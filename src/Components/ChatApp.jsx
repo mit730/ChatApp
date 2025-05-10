@@ -15,7 +15,6 @@ const ChatApp = ({ socket }) => {
 
     socket.on('messageResponse', (data) => {
       setMessageData((prevMessages) => {
-        // Avoid duplicating the message if it's already in the state
         if (!prevMessages.some((msg) => msg.id === data.id)) {
           return [...prevMessages, data];
         }
@@ -54,7 +53,7 @@ const ChatApp = ({ socket }) => {
       socket.emit('joinRoom', { roomId });
       fetchChatHistory();
     } else {
-      setMessageData([]); // Clear messages if no room is selected
+      setMessageData([]);
     }
 
     return () => {
@@ -65,7 +64,7 @@ const ChatApp = ({ socket }) => {
 
   return (
     <div className="chat-app">
-      <Sidebar socket={socket} setRoomId={setRoomId} roomId={roomId}/>
+      <Sidebar socket={socket} setRoomId={setRoomId} roomId={roomId} />
       <div className="chat-container">
         <ChatHeader roomId={roomId} />
         {roomId ? (

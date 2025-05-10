@@ -14,7 +14,11 @@ const ChatHeader = ({ roomId }) => {
             'Authorization': `Bearer ${token}`,
           },
         });
+        if (!response.ok) {
+          throw new Error('Failed to fetch current user');
+        }
         const data = await response.json();
+        console.log("Current user:", data);
         setCurrentUserId(data._id);
       } catch (error) {
         console.error('Error fetching current user:', error);
@@ -27,12 +31,11 @@ const ChatHeader = ({ roomId }) => {
   useEffect(() => {
     if (!roomId || !currentUserId) return;
 
-    console.log("Current roomId:", roomId); // Debug roomId
+    console.log("Current roomId:", roomId);
     const [id1, id2] = roomId.split('-');
     const otherUserId = currentUserId === id1 ? id2 : id1;
-    console.log("Extracted otherUserId:", otherUserId); // Debug otherUserId
+    console.log("Extracted otherUserId:", otherUserId);
 
-    // Validate otherUserId as a potential ObjectId (24-character hex string)
     const isValidObjectId = /^[0-9a-fA-F]{24}$/.test(otherUserId);
     if (!isValidObjectId) {
       console.error('Invalid otherUserId:', otherUserId);
@@ -48,7 +51,11 @@ const ChatHeader = ({ roomId }) => {
             'Authorization': `Bearer ${token}`,
           },
         });
+        if (!response.ok) {
+          throw new Error('Failed to fetch other user');
+        }
         const data = await response.json();
+        console.log("Fetched other user:", data);
         setOtherUser(data);
       } catch (error) {
         console.error('Error fetching other user:', error);
@@ -58,7 +65,7 @@ const ChatHeader = ({ roomId }) => {
 
     fetchOtherUser();
   }, [roomId, currentUserId]);
-console.log(otherUser, "")
+
   return (
     <div className="chat-header">
       <h3>{otherUser ? otherUser.username : 'Loading...'}</h3>

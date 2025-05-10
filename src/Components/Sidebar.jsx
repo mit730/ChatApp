@@ -3,9 +3,25 @@ import './Sidebar.css';
 
 const Sidebar = ({ socket, setRoomId, roomId }) => {
   const [users, setUsers] = useState([]);
+  const [currentUserId, setCurrentUserId] = useState(null);
   const currentUser = localStorage.getItem('userName');
 
   useEffect(() => {
+    const fetchCurrentUser = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await fetch('http://localhost:5001/api/users/me', {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          },
+        });
+        const data = await response.json();
+        setCurrentUserId(data._id);
+      } catch (error) {
+        console.error('Error fetching current user:', error);
+      }
+    };
+
     const fetchUsers = async () => {
       try {
         const token = localStorage.getItem('token');
@@ -21,21 +37,25 @@ const Sidebar = ({ socket, setRoomId, roomId }) => {
         console.error('Error fetching users:', error);
       }
     };
+
+    fetchCurrentUser();
     fetchUsers();
   }, [currentUser]);
 
-  const handleChatSelect = (contactUsername) => {
-    const sortedUsernames = [currentUser, contactUsername].sort();
-    const newRoomId = sortedUsernames.join('-');
+  const handleChatSelect = (contactId) => {
+    if (!currentUserId) return;
+    const sortedIds = [currentUserId, contactId].sort();
+    const newRoomId = sortedIds.join('-');
     console.log("Setting roomId:", newRoomId);
     setRoomId(newRoomId);
     localStorage.setItem('roomId', newRoomId);
     socket.emit('joinRoom', { roomId: newRoomId });
   };
 
-  const getRoomIdForContact = (contactUsername) => {
-    const sortedUsernames = [currentUser, contactUsername].sort();
-    return sortedUsernames.join('-');
+  const getRoomIdForContact = (contactId) => {
+    if (!currentUserId) return '';
+    const sortedIds = [currentUserId, contactId].sort();
+    return sortedIds.join('-');
   };
 
   return (
@@ -44,13 +64,13 @@ const Sidebar = ({ socket, setRoomId, roomId }) => {
       <div className="contacts-list">
         {users.length > 0 ? (
           users.map((user) => {
-            const contactRoomId = getRoomIdForContact(user.username);
+            const contactRoomId = getRoomIdForContact(user._id);
             const isActive = roomId === contactRoomId;
             return (
               <div
                 key={user._id}
                 className={isActive ? 'contact-item active' : 'contact-item'}
-                onClick={() => handleChatSelect(user.username)}
+                onClick={() => handleChatSelect(user._id)}
               >
                 {user.username}
               </div>
