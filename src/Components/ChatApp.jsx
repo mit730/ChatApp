@@ -9,9 +9,19 @@ import './ChatApp.css';
 const ChatApp = ({ socket }) => {
   const [messageData, setMessageData] = useState([]);
   const [roomId, setRoomId] = useState(localStorage.getItem('roomId'));
+  const [searchResults, setSearchResults] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
+    socket.on('connect_error', (error) => {
+      if (error.message.includes('Authentication error')) {
+        console.error('Socket authentication failed:', error.message);
+        localStorage.removeItem('token');
+        localStorage.removeItem('userName');
+        localStorage.removeItem('roomId');
+        navigate('/');
+      }
+    });
 
     socket.on('messageResponse', (data) => {
       setMessageData((prevMessages) => {
@@ -54,6 +64,7 @@ const ChatApp = ({ socket }) => {
       fetchChatHistory();
     } else {
       setMessageData([]);
+      setSearchResults(null);
     }
 
     return () => {
@@ -66,10 +77,14 @@ const ChatApp = ({ socket }) => {
     <div className="chat-app">
       <Sidebar socket={socket} setRoomId={setRoomId} roomId={roomId} />
       <div className="chat-container">
-        <ChatHeader roomId={roomId} />
+        <ChatHeader roomId={roomId} setSearchResults={setSearchResults} />
         {roomId ? (
           <>
-            <ChatMessages messageData={messageData} />
+            <ChatMessages
+              messageData={messageData}
+              searchResults={searchResults}
+              searchQuery={searchResults !== null ? searchResults.query : ''}
+            />
             <MessageInput socket={socket} roomId={roomId} setMessageData={setMessageData} />
           </>
         ) : (

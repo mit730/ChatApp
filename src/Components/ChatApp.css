@@ -153,3 +153,36 @@
   font-size: 13px;
   font-style: italic;
 }
+
+.chat-header-actions button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.chat-header-actions button:hover {
+  background-color: #0056b3;
+}
+
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #837171;
+  border-bottom: 1px solid #e2dcdc;
+}
+
+.chat-header-info h3 {
+  margin: 0;
+  font-size: 1.2em;
+}
+
+.chat-header-info p {
+  margin: 0;
+  font-size: 0.9em;
+  color: #d5cdcd;
+}
