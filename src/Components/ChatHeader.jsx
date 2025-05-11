@@ -13,7 +13,7 @@ const ChatHeader = ({ roomId, setSearchResults }) => {
     const fetchCurrentUser = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch('${process.env.REACT_APP_BASE_URL}/users/me', {
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/users/me`, {
           headers: {
             'Authorization': `Bearer ${token}`,
           },
