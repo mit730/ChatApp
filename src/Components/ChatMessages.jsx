@@ -35,14 +35,22 @@ const ChatMessages = ({ messageData, searchResults, searchQuery }) => {
               <div className="message__chats" key={message.id}>
                 <p className="sender__name">You</p>
                 <div className="message__sender">
-                  <p>{highlightText(message.text, searchQuery)}</p>
+                  {message.isMedia ? (
+                    <img src={`http://localhost:5001${message.mediaUrl}`} alt="Sent media" className="message-image" />
+                  ) : (
+                    <p>{highlightText(message.text, searchQuery)}</p>
+                  )}
                 </div>
               </div>
             ) : (
               <div className="message__chats" key={message.id}>
                 <p>{message.name}</p>
                 <div className="message__recipient">
-                  <p>{highlightText(message.text, searchQuery)}</p>
+                  {message.isMedia ? (
+                  <img src={`http://localhost:5001${message.mediaUrl}`} alt="" className="message-image" />
+                  ) : (
+                    <p>{highlightText(message.text, searchQuery)}</p>
+                  )}
                 </div>
               </div>
             )

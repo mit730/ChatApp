@@ -13,15 +13,6 @@ const ChatApp = ({ socket }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    socket.on('connect_error', (error) => {
-      if (error.message.includes('Authentication error')) {
-        console.error('Socket authentication failed:', error.message);
-        localStorage.removeItem('token');
-        localStorage.removeItem('userName');
-        localStorage.removeItem('roomId');
-        navigate('/');
-      }
-    });
 
     socket.on('messageResponse', (data) => {
       setMessageData((prevMessages) => {
