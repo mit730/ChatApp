@@ -3,6 +3,7 @@ import ChatApp from './Components/ChatApp';
 import Home from './Components/Home';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import socketIO from 'socket.io-client';
+import './Responsive.css'; // Updated import
 
 // Initialize socket with token
 const token = localStorage.getItem('token');

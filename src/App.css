@@ -137,3 +137,296 @@
   border-radius: 5px;
   flex: 1;
 }
+
+/* Tablets (769px - 1024px) */
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 200px;
+  }
+
+  .chat__sidebar {
+    flex: 0.3;
+  }
+
+  .chat__main {
+    flex: 0.7;
+  }
+
+  .message__sender, .message__recipient {
+    max-width: 60%;
+  }
+
+  .message-input input[type="text"] {
+    padding: 6px;
+  }
+
+  .message-input button {
+    padding: 6px 10px;
+  }
+
+  .sendBtn {
+    width: 120px;
+    padding: 8px;
+  }
+}
+
+/* Mobile Devices (≤768px) */
+@media (max-width: 768px) {
+  /* Chat Layout */
+  .chat {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .chat__sidebar {
+    flex: none;
+    height: auto;
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #fdfdfd;
+    padding: 15px;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    padding: 15px;
+  }
+
+  .chat__main {
+    flex: none;
+    width: 100%;
+    height: calc(100vh - 150px); /* Adjust height to account for sidebar */
+  }
+
+  /* Sidebar */
+  .sidebar h2 {
+    font-size: 1.3em;
+  }
+
+  .sidebar h3 {
+    font-size: 1em;
+  }
+
+  .sidebar button {
+    padding: 6px 10px;
+    font-size: 0.9em;
+  }
+
+  .contacts-list {
+    gap: 8px;
+  }
+
+  .contact-item {
+    padding: 8px;
+    font-size: 0.9em;
+  }
+
+  /* Chat Header */
+  .chat__mainHeader {
+    height: 8vh;
+    padding: 10px;
+  }
+
+  .chat-header {
+    padding: 8px;
+  }
+
+  .chat-header-info h3 {
+    font-size: 1em;
+  }
+
+  .chat-header-info p {
+    font-size: 0.8em;
+  }
+
+  .chat-header-actions button {
+    padding: 4px 8px;
+    font-size: 0.9em;
+  }
+
+  /* Chat Messages */
+  .chat-messages1 {
+    padding: 8px;
+  }
+
+  .message__container {
+    gap: 8px;
+  }
+
+  .message__sender, .message__recipient {
+    max-width: 80%;
+    padding: 6px 10px;
+    font-size: 0.9em;
+  }
+
+  .message__recipient {
+    width: auto; /* Allow recipient messages to adjust width */
+  }
+
+  .message-image {
+    max-width: 150px;
+    max-height: 150px;
+  }
+
+  .sender__name,
+  .message__chats p:first-child {
+    font-size: 0.7em;
+  }
+
+  /* Chat Footer and Message Input */
+  .chat__footer {
+    height: 8vh;
+    padding: 8px;
+  }
+
+  .message-input {
+    padding: 8px;
+  }
+
+  .message-input form {
+    gap: 8px;
+  }
+
+  .message-input input[type="text"] {
+    padding: 6px;
+    font-size: 0.9em;
+  }
+
+  .message-input .image-upload {
+    padding: 6px;
+  }
+
+  .message-input button {
+    padding: 6px 10px;
+    font-size: 0.9em;
+  }
+
+  .sendBtn {
+    width: 100px;
+    padding: 6px;
+    font-size: 0.9em;
+  }
+
+  .toggle__mode {
+    width: 100px;
+    padding: 2px;
+    font-size: 12px;
+    margin-left: 5px;
+  }
+
+  /* Modal */
+  .modal-content {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .modal-content input[type="text"] {
+    padding: 6px;
+  }
+
+  .modal-content button {
+    padding: 6px 10px;
+    font-size: 0.9em;
+  }
+
+  /* Home Page */
+  .home__container {
+    padding: 15px;
+  }
+
+  .username__input {
+    width: 80%;
+    padding: 8px;
+    font-size: 0.9em;
+  }
+
+  .home__cta {
+    width: 150px;
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .leaveChat__btn {
+    width: 120px;
+    padding: 8px;
+    font-size: 0.9em;
+  }
+}
+
+/* Small Mobile Devices (≤480px) */
+@media (max-width: 480px) {
+  .sidebar h2 {
+    font-size: 1.1em;
+  }
+
+  .sidebar h3 {
+    font-size: 0.9em;
+  }
+
+  .contact-item {
+    padding: 6px;
+    font-size: 0.8em;
+  }
+
+  .chat__mainHeader {
+    height: 7vh;
+    padding: 8px;
+  }
+
+  .chat-header-info h3 {
+    font-size: 0.9em;
+  }
+
+  .chat-header-info p {
+    font-size: 0.7em;
+  }
+
+  .message__sender, .message__recipient {
+    max-width: 85%;
+    padding: 5px 8px;
+    font-size: 0.8em;
+  }
+
+  .message-image {
+    max-width: 120px;
+    max-height: 120px;
+  }
+
+  .chat__footer {
+    height: 7vh;
+    padding: 6px;
+  }
+
+  .message-input input[type="text"] {
+    padding: 5px;
+    font-size: 0.8em;
+  }
+
+  .message-input button {
+    padding: 5px 8px;
+    font-size: 0.8em;
+  }
+
+  .sendBtn {
+    width: 80px;
+    padding: 5px;
+    font-size: 0.8em;
+  }
+
+  .toggle__mode {
+    width: 80px;
+    font-size: 10px;
+  }
+
+  .username__input {
+    width: 90%;
+    padding: 6px;
+  }
+
+  .home__cta {
+    width: 120px;
+    padding: 6px;
+    font-size: 12px;
+  }
+}
