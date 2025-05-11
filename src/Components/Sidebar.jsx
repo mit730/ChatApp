@@ -10,7 +10,7 @@ const Sidebar = ({ socket, setRoomId, roomId }) => {
     const fetchCurrentUser = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch('http://localhost:5001/api/users/me', {
+        const response = await fetch('${process.env.REACT_APP_BASE_URL}/users/me', {
           headers: {
             'Authorization': `Bearer ${token}`,
           },
@@ -25,7 +25,7 @@ const Sidebar = ({ socket, setRoomId, roomId }) => {
     const fetchUsers = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch('http://localhost:5001/api/users/users', {
+        const response = await fetch('${process.env.REACT_APP_BASE_URL}/users/users', {
           headers: {
             'Authorization': `Bearer ${token}`,
           },

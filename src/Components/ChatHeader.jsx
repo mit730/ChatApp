@@ -13,7 +13,7 @@ const ChatHeader = ({ roomId, setSearchResults }) => {
     const fetchCurrentUser = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch('http://localhost:5001/api/users/me', {
+        const response = await fetch('${process.env.REACT_APP_BASE_URL}/users/me', {
           headers: {
             'Authorization': `Bearer ${token}`,
           },
@@ -50,7 +50,7 @@ const ChatHeader = ({ roomId, setSearchResults }) => {
     const fetchOtherUser = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch(`http://localhost:5001/api/users/${otherUserId}`, {
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/users/${otherUserId}`, {
           headers: {
             'Authorization': `Bearer ${token}`,
           },
@@ -84,7 +84,7 @@ const ChatHeader = ({ roomId, setSearchResults }) => {
         ...(searchType && { type: searchType }),
         ...(searchDate && { date: searchDate }),
       });
-      const response = await fetch(`http://localhost:5001/api/chat/search?${queryParams}`, {
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/chat/search?${queryParams}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },

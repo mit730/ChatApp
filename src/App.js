@@ -6,7 +6,7 @@ import socketIO from 'socket.io-client';
 
 // Initialize socket with token
 const token = localStorage.getItem('token');
-const socket = socketIO.connect('http://localhost:5001', {
+const socket = socketIO.connect(process.env.REACT_APP_SOCKET_URL, {
   auth: { token }
 });
 

@@ -36,7 +36,7 @@ const ChatMessages = ({ messageData, searchResults, searchQuery }) => {
                 <p className="sender__name">You</p>
                 <div className="message__sender">
                   {message.isMedia ? (
-                    <img src={`http://localhost:5001${message.mediaUrl}`} alt="Sent media" className="message-image" />
+                    <img src={`${process.env.REACT_APP_IMG_URL}${message.mediaUrl}`} alt="Sent media" className="message-image" />
                   ) : (
                     <p>{highlightText(message.text, searchQuery)}</p>
                   )}
@@ -47,7 +47,7 @@ const ChatMessages = ({ messageData, searchResults, searchQuery }) => {
                 <p>{message.name}</p>
                 <div className="message__recipient">
                   {message.isMedia ? (
-                  <img src={`http://localhost:5001${message.mediaUrl}`} alt="" className="message-image" />
+                  <img src={`${process.env.REACT_APP_IMG_URL}${message.mediaUrl}`} alt="" className="message-image" />
                   ) : (
                     <p>{highlightText(message.text, searchQuery)}</p>
                   )}

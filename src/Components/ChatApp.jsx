@@ -27,7 +27,7 @@ const ChatApp = ({ socket }) => {
       try {
         const token = localStorage.getItem('token');
         console.log("Fetching history for roomId:", roomId);
-        const response = await fetch(`http://localhost:5001/api/chat/history?roomId=${roomId}`, {
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/chat/history?roomId=${roomId}`, {
           method: "GET",
           headers: {
             'Authorization': `Bearer ${token}`

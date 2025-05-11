@@ -20,7 +20,7 @@ const MessageInput = ({ socket, roomId, setMessageData }) => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5001/api/chat/upload', {
+      const response = await fetch('${process.env.REACT_APP_BASE_URL}/chat/upload', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,

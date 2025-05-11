@@ -14,7 +14,7 @@ const Home = () => {
 
     const endpoint = isRegisterMode ? "register" : "login";
     try {
-      const response = await fetch(`http://localhost:5001/api/users/${endpoint}`, {
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/users/${endpoint}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
